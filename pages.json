@@ -1,0 +1,103 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				// app端配置
+				"app-plus": {
+					// 配置导航栏
+					"titleNView": {
+						// 配置导航栏的输入框
+						"searchInput": {
+							"align": "center",
+							"placeholder": "搜索帖子",
+							"backgroundColor": "#f5f4f2",
+							"borderRadius": "5px",
+							"disabled": true,
+							"placeholderColor": "#6d6c67"
+						},
+						// 配置导航栏的按钮
+						"buttons": [
+							{
+								"float": "right",
+								"color": "#333333",
+								"colorPressed": "#bbbbbb",
+								"fontSize": "20px",
+								"fontSrc": "/static/iconfont.ttf",
+								"text": "\ue668"
+							}
+						]
+					}
+				}
+			}
+		}
+	    ,{
+            "path" : "pages/news/news",
+            "style" :                                                                                    
+            {
+               
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/msg/msg",
+            "style" :                                                                                    
+            {
+               
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/my/my",
+            "style" :                                                                                    
+            {
+                
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	// 用于设置应用的状态栏、导航条、标题、窗口背景色等。
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "社区交友",
+		"navigationBarBackgroundColor": "#ffffff",
+		"backgroundColor": "#ffffff"
+	},
+	// 配置tabbar
+	"tabBar": {
+		"color": "#323232",
+		"selectedColor": "#ed6384",
+		"backgroundColor": "#ffffff",
+		"borderStyle": "black",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/tabbar/index.png",
+				"selectedIconPath": "static/tabbar/indexed.png",
+				"text": "社区"
+			},
+			{
+				"pagePath": "pages/news/news",
+				"iconPath": "static/tabbar/news.png",
+				"selectedIconPath": "static/tabbar/newsed.png",
+				"text": "动态"
+			},
+			{
+				"pagePath": "pages/msg/msg",
+				"iconPath": "static/tabbar/paper.png",
+				"selectedIconPath": "static/tabbar/papered.png",
+				"text": "消息"
+			},
+			{
+				"pagePath": "pages/my/my",
+				"iconPath": "static/tabbar/home.png",
+				"selectedIconPath": "static/tabbar/homeed.png",
+				"text": "我的"
+			}
+		]
+	},
+	"uniIdRouter": {}
+}
