@@ -104,7 +104,7 @@
 		data() {
 			return {
 				scrollH: 0,
-				scrollInto: 0,
+				scrollInto: "tab0",
 				activeTab: 0,
 				// tabbar数据
 				tabBars: [],
@@ -119,6 +119,7 @@
 		methods: {
 			// 获取数据
 			async getData() {
+				
 				const result = await getPostClass()
 				console.log("result=>", result)
 				this.tabBars = result.list
@@ -130,7 +131,7 @@
 						loadMore: '上拉加载更多',
 						list: []
 					}
-
+				
 					if(i < 2){
 						obj.list = demo
 					}

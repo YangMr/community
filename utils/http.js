@@ -11,10 +11,11 @@ const service = {
 	async request(options = {}){
 		try{
 			options.url = config.webUrl + options.url
+			
 			options.method = options.method || this.common.method
 			options.header = options.header || this.common.header
 			options.data = options.data || this.common.data
-				
+				console.log("options", options)
 			const res = await uni.request(options)	
 			return res.data.data
 		}catch(e){
