@@ -48,6 +48,22 @@
     },
     /* 快应用特有相关 */
     "quickapp" : {},
+	/* h5 */
+	"h5": {
+		"devServer": {
+			"port" : 8888,
+			"disableHostCheck" : true,
+			"proxy" : {
+				"/dev-api" : {
+					"target" : "http://sqapi.2yuecloud.com/api/v1",
+					"changeOrigin" : true,
+					"pathRewrite" : {
+						"^/dev-api" : ""
+					}
+				}
+			}
+		}
+	},
     /* 小程序特有相关 */
     "mp-weixin" : {
         "appid" : "",

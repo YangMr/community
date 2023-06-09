@@ -5,10 +5,10 @@
 			<!-- 头像|昵称 -->
 			<view class="flex align-center">
 				<!-- 头像 -->
-				<image @click="handleOpenSpace" class="mr-2 rounded-100 avatar" lazy-load :src="item.user.userpic"></image>
+				<image @click="handleOpenSpace" class="mr-2 rounded-100 avatar" lazy-load :src="item.userpic"></image>
 				<!-- 昵称 -->
 				<view>
-					<view class="font nick-name">{{item.user.username}}</view>
+					<view class="font nick-name">{{item.username}}</view>
 					<text class="desc font-sm text-light-muted">{{item.create_time}}</text>
 				</view>
 			</view>
