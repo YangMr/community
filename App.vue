@@ -26,4 +26,7 @@
 	
 	/* 引入公共样式库 */
 	@import url("@/common/free.css");
+	
+	/* 引入当前项目的公共样式 */
+	@import url("@/common/common.css");
 </style>
