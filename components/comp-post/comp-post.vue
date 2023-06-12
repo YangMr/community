@@ -5,11 +5,11 @@
 			<!-- 头像|昵称 -->
 			<view class="flex align-center">
 				<!-- 头像 -->
-				<image @click="handleOpenSpace" class="mr-2 rounded-100 avatar" lazy-load :src="item.userpic"></image>
+				<image @click="handleOpenSpace" class="mr-2 rounded-100 avatar" lazy-load :src="item.userpic || '/static/default.jpg'"></image>
 				<!-- 昵称 -->
 				<view>
 					<view class="font nick-name">{{item.username}}</view>
-					<text class="desc font-sm text-light-muted">{{item.create_time}}</text>
+					<text class="desc font-sm text-light-muted">{{item.newstime|formatTime}}</text>
 				</view>
 			</view>
 			<!-- 关注按钮 -->
@@ -50,6 +50,7 @@
 </template>
 
 <script>
+	import $T from "@/utils/time.js"
 	export default {
 		name: "comp-post",
 		props : {
@@ -66,6 +67,11 @@
 			return {
 
 			};
+		},
+		filters : {
+			formatTime(time){
+				return $T.gettime(time)
+			}
 		},
 		methods : {
 			// 打开个人空间

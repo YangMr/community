@@ -27,6 +27,11 @@
 						</scroll-view>
 					</view>
 				</template>
+				<!-- 加载中 -->
+				<template v-if="!item.firstLoad">
+					<view class="text-light-muted flex align-center justify-center font-md" style="height: 200rpx;">加载中.....</view>
+				</template>
+				<!-- 无数据 -->
 				<template v-else>
 					<comp-no-thing></comp-no-thing>
 				</template>
@@ -99,10 +104,14 @@
 			share_num: 2
 		},
 	]
-	import { getPostClass } from "@/api/index.js"
+	import {
+		getPostClass,
+		findPostClass
+	} from "@/api/index.js"
 	export default {
 		data() {
 			return {
+			
 				scrollH: 0,
 				scrollInto: "tab0",
 				activeTab: 0,
@@ -112,6 +121,12 @@
 				newsList: []
 			}
 		},
+		// 监听是否点击了搜索栏
+		onNavigationBarSearchInputClicked() {
+			uni.navigateTo({
+				url: "/pages/search/search?type=post"
+			})
+		},
 		onLoad() {
 			this.getHeight()
 			this.getData()
@@ -119,26 +134,60 @@
 		methods: {
 			// 获取数据
 			async getData() {
-				
+				// 获取tabbar的数据
 				const result = await getPostClass()
-				console.log("result=>", result)
 				this.tabBars = result.list
-				const arr = []
 
+
+				const arr = []
 				for (let i = 0; i < this.tabBars.length; i++) {
 					// 1.上拉加载更多  2.加载中... 3.没有更多了
 					let obj = {
 						loadMore: '上拉加载更多',
-						list: []
-					}
-				
-					if(i < 2){
-						obj.list = demo
+						list: [],
+						page: 1,
+						// 当firstLoad为false,则表示是第一次加载数据
+						firstLoad : false, 
 					}
 
 					arr.push(obj)
 				}
+
 				this.newsList = arr
+
+				if (this.tabBars.length > 0) {
+					this.getPostList()
+				}
+			},
+			// 获取帖子列表方法
+			async getPostList() {
+				try {
+					// 获取当前点击的tab的下标
+					const index = this.activeTab
+					// 获取对应的id
+					const id = this.tabBars[index].id
+					// 获取对应的页页码
+					const page = this.newsList[index].page
+					// 调用接口, 获取后台返回的数据
+					const result = await findPostClass(id, page)
+
+					const isRefresh = page === 1
+
+					const list = result.list.map(item => {
+						return this.$U.formatCommonList(item)
+					})
+					
+					this.newsList[index].list = isRefresh ? list : [...this.newsList[index].list, ...list]
+					
+					this.newsList[index].loadMore = list.length < 10 ? '没有更多了' : '上拉加载更多'
+					
+					if(isRefresh){
+						this.newsList[index].firstLoad = true
+					}
+					
+				} catch (e) {
+					//TODO handle the exception
+				}
 			},
 			// 上拉加载
 			handleLoadMore(index) {
@@ -150,15 +199,9 @@
 
 				// 修改当前列表加载状态
 				item.loadMore = '加载中...'
-
-				// 模拟数据请求
-				setTimeout(() => {
-					item.list = [...item.list, ...item.list]
-
-					item.loadMore = '上拉加载更多'
-				}, 1000)
-
-				// 当拿到所有的数据之后, 我们的状态九修改为没有更多了
+				
+				item.page++
+				this.getPostList()		
 
 			},
 			// 获取可使用窗口高度
@@ -173,6 +216,8 @@
 			handleChangeTab(index) {
 				this.activeTab = index
 				this.scrollInto = 'tab' + index
+
+				this.getPostList()
 			},
 			// swiper切换触发的方法
 			handleChangeSwiper(e) {
@@ -180,36 +225,38 @@
 			},
 			// 关注操作
 			handleIsFollow(index) {
-				// this.newsList[index].isFollow = !this.list[index].isFollow
-				// uni.showToast({
-				// 	title: '关注成功',
-				// 	icon: 'none'
-				// })
+				const list = this.newsList[this.activeTab].list
+				list[index].isFollow = !list[index].isFollow
+				uni.showToast({
+					title: '关注成功',
+					icon: 'none'
+				})
 			},
 			// 顶/踩操作
 			handleSupport(e) {
 				// 获取当前操作的数据(点击按钮对应的数据)
-				// const item = this.list[e.index]
-				// const msg = e.type === 'support' ? '支持' : '反对'
-				// // 当前所点击的帖子是否被顶/踩过, 如果没有被顶/踩,我们在第一次点击的时候, 就应该让对应的类型数字++
-				// if (item.support.type === "") {
-				// 	item.support[e.type + '_count']++
-				// } else if (item.support.type === 'support' && e.type === 'unsupport') {
-				// 	// 顶 -1
-				// 	item.support.support_count--
-				// 	// 踩 +1
-				// 	item.support.unsupport_count++
-				// } else if (item.support.type === 'unsupport' && e.type === 'support') {
-				// 	// 顶 +1
-				// 	item.support.support_count++
-				// 	// 踩 -1
-				// 	item.support.unsupport_count--
-				// }
-				// item.support.type = e.type
-				// uni.showToast({
-				// 	title: msg,
-				// 	icon: 'none'
-				// })
+				const list = this.newsList[this.activeTab].list
+				const item = list[e.index]
+				const msg = e.type === 'support' ? '支持' : '反对'
+				// 当前所点击的帖子是否被顶/踩过, 如果没有被顶/踩,我们在第一次点击的时候, 就应该让对应的类型数字++
+				if (item.support.type === "") {
+					item.support[e.type + '_count']++
+				} else if (item.support.type === 'support' && e.type === 'unsupport') {
+					// 顶 -1
+					item.support.support_count--
+					// 踩 +1
+					item.support.unsupport_count++
+				} else if (item.support.type === 'unsupport' && e.type === 'support') {
+					// 顶 +1
+					item.support.support_count++
+					// 踩 -1
+					item.support.unsupport_count--
+				}
+				item.support.type = e.type
+				uni.showToast({
+					title: msg,
+					icon: 'none'
+				})
 			}
 		}
 	}

@@ -4,6 +4,11 @@ import App from './App'
 import Vue from 'vue'
 import './uni.promisify.adaptor'
 Vue.config.productionTip = false
+
+// 全局挂载工具库
+import $U from "./utils/utils.js"
+Vue.prototype.$U = $U
+
 App.mpType = 'app'
 const app = new Vue({
   ...App

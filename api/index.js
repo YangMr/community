@@ -2,7 +2,6 @@ import service from "@/utils/http.js"
 
 // 获取文章所有分类
 const getPostClass = () => {
-	console.log("456")
 	return service.get('/postclass')
 }
 
