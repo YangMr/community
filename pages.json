@@ -17,81 +17,106 @@
 							"placeholderColor": "#6d6c67"
 						},
 						// 配置导航栏的按钮
-						"buttons": [
-							{
-								"float": "right",
-								"color": "#333333",
-								"colorPressed": "#bbbbbb",
-								"fontSize": "20px",
-								"fontSrc": "/static/iconfont.ttf",
-								"text": "\ue668"
-							}
-						]
+						"buttons": [{
+							"float": "right",
+							"color": "#333333",
+							"colorPressed": "#bbbbbb",
+							"fontSize": "20px",
+							"fontSrc": "/static/iconfont.ttf",
+							"text": "\ue668"
+						}]
 					}
 				}
 			}
-		}
-	    ,{
-            "path" : "pages/news/news",
-            "style" :                                                                                    
-            {
-               
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/msg/msg",
-            "style" :                                                                                    
-            {
-               
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/my/my",
-            "style" :                                                                                    
-            {
-                
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/search/search",
-            "style" :                                                                                    
-            {
+		}, {
+			"path": "pages/news/news",
+			"style": {
+
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/msg/msg",
+			"style": {
+				"navigationBarTitleText": "消息列表",
+				"enablePullDownRefresh": true,
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"float": "left",
+							"color": "#333333",
+							"colorPressed": "#bbbbbb",
+							"fontSize": "20px",
+							"fontSrc": "/static/iconfont.ttf",
+							"text": "\ue611"
+						}, {
+							"float": "right",
+							"color": "#333333",
+							"colorPressed": "#bbbbbb",
+							"fontSize": "20px",
+							"fontSrc": "/static/iconfont.ttf",
+							"text": "\ue649"
+						}]
+					}
+				}
+			}
+		}, {
+			"path": "pages/my/my",
+			"style": {
+
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/search/search",
+			"style": {
 				"enablePullDownRefresh": true,
 				"onReachBottomDistance": 0,
-                // app端配置
-                "app-plus": {
-                	// 配置导航栏
-                	"titleNView": {
-                		// 配置导航栏的输入框
-                		"searchInput": {
-                			"align": "center",
-                			"placeholder": "搜索帖子",
-                			"backgroundColor": "#f5f4f2",
-                			"borderRadius": "5px",
-                			"placeholderColor": "#6d6c67"
-                		},
-                		// 配置导航栏的按钮
-                		"buttons": [
-                			{
-                				"float": "right",
-                				"color": "#333333",
-                				"colorPressed": "#bbbbbb",
-                				"fontSize": "14px",
-                				"text": "搜索"
-                			}
-                		]
-                	}
-                }
-            }
-            
-        }
-    ],
+				// app端配置
+				"app-plus": {
+					// 配置导航栏
+					"titleNView": {
+						// 配置导航栏的输入框
+						"searchInput": {
+							"align": "center",
+							"placeholder": "搜索帖子",
+							"backgroundColor": "#f5f4f2",
+							"borderRadius": "5px",
+							"placeholderColor": "#6d6c67"
+						},
+						// 配置导航栏的按钮
+						"buttons": [{
+							"float": "right",
+							"color": "#333333",
+							"colorPressed": "#bbbbbb",
+							"fontSize": "14px",
+							"text": "搜索"
+						}]
+					}
+				}
+			}
+
+		}, {
+			"path": "pages/user-chat/user-chat",
+			"style": {
+				"app-plus": {
+					"softinputMode": "adjustPan",
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"float": "right",
+							"color": "#333333",
+							"colorPressed": "#bbbbbb",
+							"fontSize": "20px",
+							"fontSrc": "/static/iconfont.ttf",
+							"text": "\ue628"
+						}]
+					}
+				}
+			}
+
+		}
+	],
 	// 用于设置应用的状态栏、导航条、标题、窗口背景色等。
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -105,8 +130,7 @@
 		"selectedColor": "#ed6384",
 		"backgroundColor": "#ffffff",
 		"borderStyle": "black",
-		"list": [
-			{
+		"list": [{
 				"pagePath": "pages/index/index",
 				"iconPath": "static/tabbar/index.png",
 				"selectedIconPath": "static/tabbar/indexed.png",
