@@ -63,8 +63,17 @@
 		}, {
 			"path": "pages/my/my",
 			"style": {
-
-				"enablePullDownRefresh": false
+				"navigationBarTitleText": "我的",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [
+							{
+								"type": "menu"
+							}
+						]
+					}
+				}
+				
 			}
 
 		}, {
@@ -116,7 +125,31 @@
 			}
 
 		}
-	],
+	    ,{
+            "path" : "pages/user-set/user-set",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "设置"
+            }
+            
+        }
+        ,{
+            "path" : "pages/user-password/user-password",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "修改密码"
+            }
+            
+        }
+        ,{
+            "path" : "pages/user-email/user-email",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "邮箱绑定"
+            }
+            
+        }
+    ],
 	// 用于设置应用的状态栏、导航条、标题、窗口背景色等。
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
