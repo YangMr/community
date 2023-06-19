@@ -1,5 +1,7 @@
 <template>
 	<view>
+		<uv-status-bar></uv-status-bar>
+		
 		<view>
 			<text @click="handleBack"
 				class="iconfont icon-guanbi close  font-lg flex align-center justify-center"></text>

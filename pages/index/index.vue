@@ -127,6 +127,12 @@
 				url: "/pages/search/search?type=post"
 			})
 		},
+		// 监听导航栏按钮
+		onNavigationBarButtonTap() {
+			uni.navigateTo({
+				url : '/pages/add-input/add-input'
+			})
+		},
 		onLoad() {
 			this.getHeight()
 			this.getData()

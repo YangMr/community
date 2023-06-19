@@ -159,6 +159,48 @@
             }
             
         }
+        ,{
+            "path" : "pages/user-list/user-list",
+            "style" :                                                                                    
+            {
+                "app-plus": {
+					// 动画效果
+					"animationType":"slide-in-left",
+                	"titleNView": {
+						// 取消返回按钮箭头
+						"autoBackButton":false,
+                		// 配置导航栏的输入框
+                		"searchInput": {
+                			"align": "center",
+                			"placeholder": "搜索用户",
+                			"backgroundColor": "#f5f4f2",
+                			"borderRadius": "5px",
+                			"disabled": true,
+                			"placeholderColor": "#6d6c67"
+                		},
+                		// 配置导航栏的按钮
+                		"buttons": [{
+                			"float": "right",
+                			"color": "#333333",
+                			"colorPressed": "#bbbbbb",
+                			"fontSize": "15px",
+                			"text": "取消"
+                		}]
+                	}
+                }
+            }
+            
+        }
+        ,{
+            "path" : "pages/add-input/add-input",
+            "style" :                                                                                    
+            {
+               "app-plus": {
+               	"titleNView": false
+               }
+            }
+            
+        }
     ],
 	// 用于设置应用的状态栏、导航条、标题、窗口背景色等。
 	"globalStyle": {

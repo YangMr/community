@@ -67,7 +67,9 @@
 			}
 			// 点击了导航栏的左侧按钮
 			if(e.index === 0){
-				
+				uni.navigateTo({
+					url : '/pages/user-list/user-list'
+				})
 			}
 		},
 		// 监听是否进行下拉刷新

@@ -1,7 +1,7 @@
 <template>
-	<view class="px-5 py-3 flex align-center">
+	<view class="px-5 py-5 flex align-center">
 		   <block v-for="(item,index) in authList" :key="index">
-			   <view class="flex-1 flex align-center justify-center">
+			   <view class="flex-1 flex align-center justify-center mr-5">
 			   	 <view :class="item.icon + ' ' + item.bgColor" class="iconfont font-lg text-white  rounded-circle icon flex align-center justify-center"></view>
 			   </view>
 		   </block>
@@ -33,7 +33,7 @@
 					service: "oauth",
 					success : (res)=>{
 						console.log("Res=>", res)
-						this.authList = res.provider.map(valiue=>{
+						this.authList = res.provider.map(value=>{
 							let providerName = "" // 登录名称
 							let icon  = "" // 图标名称
 							let bgColor  = "" // 图标背景颜色
