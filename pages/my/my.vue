@@ -1,7 +1,9 @@
 <template>
 	<view>
-
 		<!-- 未登录的状态 -->
+		<navigator url="/pages/login/login">登录页</navigator>
+
+		<!-- 已登录的状态 -->
 		<view class="p-2 flex align-center">
 			<image class="user-avatar rounded-circle" src="@/static/default.jpg"></image>
 			<view class="flex flex-column  flex-1 px-2">

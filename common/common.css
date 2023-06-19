@@ -6,3 +6,8 @@
 .text-main{
 	color : #ff4a6a;
 }
+
+.bg-main-disabled{
+	background-color: #f87f97!important;
+	color : #fff!important;
+}
