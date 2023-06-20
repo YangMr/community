@@ -24,16 +24,16 @@
 				</view>
 				<text class="iconfont icon-jinru"></text>
 			</view>
-
-			<view class="flex align-center  px-3 py-2">
-				<block v-for="(item,index) in myData" :key="index">
-					<view class="flex flex-1 flex-column align-center justify-center">
-						<view class="font-lg font-weight-bold">{{item.num}}</view>
-						<view class="font text-muted">{{item.name}}</view>
-					</view>
-				</block>
-			</view>
 		</template>
+		
+		<view class="flex align-center  px-3 py-2">
+			<block v-for="(item,index) in myData" :key="index">
+				<view class="flex flex-1 flex-column align-center justify-center">
+					<view class="font-lg font-weight-bold">{{item.num}}</view>
+					<view class="font text-muted">{{item.name}}</view>
+				</view>
+			</block>
+		</view>
 
 		<view class="px-3 py-2">
 			<image class="rounded user-banner" src="@/static/demo/banner1.jpg" mode="aspectFill"></image>
@@ -103,11 +103,14 @@
 				return this.$store.state.loginStatus
 			},
 			user() {
-				console.log("==>", this.$store.state.user)
 				return this.$store.state.user || {}
 			}
 		},
 		onLoad() {
+
+			
+		},
+		onShow() {
 			if (this.$store.state.loginStatus) {
 				this.handleGetInfo()
 			}
@@ -130,7 +133,6 @@
 						demo[2].num = this.userInfo.comments_count
 						demo[3].num = this.userInfo.withfen_count
 					}
-					console.log("info==>", result)
 				} catch (e) {
 					//TODO handle the exception
 				}

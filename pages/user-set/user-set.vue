@@ -67,8 +67,6 @@
 			async handleLogout(){
 				this.loading = true
 				try{
-					const user111 = JSON.parse(uni.getStorageSync("user")) || ""
-					console.log("user11==>", user111)
 					const result = await logout()
 					console.log("result==>", result)
 					if(result){

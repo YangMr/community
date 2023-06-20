@@ -3322,45 +3322,45 @@ var render = function () {
               ],
               1
             ),
-            _c(
-              "uni-view",
-              { staticClass: _vm._$g(13, "sc"), attrs: { _i: 13 } },
-              [
-                _vm._l(_vm._$g(14, "f"), function (item, index, $20, $30) {
-                  return [
-                    _c(
-                      "uni-view",
-                      {
-                        key: item["k0"],
-                        staticClass: _vm._$g("15-" + $30, "sc"),
-                        attrs: { _i: "15-" + $30 },
-                      },
-                      [
-                        _c(
-                          "uni-view",
-                          {
-                            staticClass: _vm._$g("16-" + $30, "sc"),
-                            attrs: { _i: "16-" + $30 },
-                          },
-                          [_vm._v(_vm._$g("16-" + $30, "t0-0"))]
-                        ),
-                        _c(
-                          "uni-view",
-                          {
-                            staticClass: _vm._$g("17-" + $30, "sc"),
-                            attrs: { _i: "17-" + $30 },
-                          },
-                          [_vm._v(_vm._$g("17-" + $30, "t0-0"))]
-                        ),
-                      ],
-                      1
-                    ),
-                  ]
-                }),
-              ],
-              2
-            ),
           ],
+      _c(
+        "uni-view",
+        { staticClass: _vm._$g(13, "sc"), attrs: { _i: 13 } },
+        [
+          _vm._l(_vm._$g(14, "f"), function (item, index, $20, $30) {
+            return [
+              _c(
+                "uni-view",
+                {
+                  key: item["k0"],
+                  staticClass: _vm._$g("15-" + $30, "sc"),
+                  attrs: { _i: "15-" + $30 },
+                },
+                [
+                  _c(
+                    "uni-view",
+                    {
+                      staticClass: _vm._$g("16-" + $30, "sc"),
+                      attrs: { _i: "16-" + $30 },
+                    },
+                    [_vm._v(_vm._$g("16-" + $30, "t0-0"))]
+                  ),
+                  _c(
+                    "uni-view",
+                    {
+                      staticClass: _vm._$g("17-" + $30, "sc"),
+                      attrs: { _i: "17-" + $30 },
+                    },
+                    [_vm._v(_vm._$g("17-" + $30, "t0-0"))]
+                  ),
+                ],
+                1
+              ),
+            ]
+          }),
+        ],
+        2
+      ),
       _c(
         "uni-view",
         { staticClass: _vm._$g(18, "sc"), attrs: { _i: 18 } },
@@ -5569,7 +5569,7 @@ var render = function () {
           callback: function ($$v) {
             _vm.$handleVModelEvent(1, $$v)
           },
-          expression: "changePassForm.oldPassword",
+          expression: "changePassForm.oldpassword",
         },
       }),
       _c("v-uni-input", {
@@ -5580,7 +5580,7 @@ var render = function () {
           callback: function ($$v) {
             _vm.$handleVModelEvent(2, $$v)
           },
-          expression: "changePassForm.newPassword",
+          expression: "changePassForm.newpassword",
         },
       }),
       _c("v-uni-input", {
@@ -5591,7 +5591,7 @@ var render = function () {
           callback: function ($$v) {
             _vm.$handleVModelEvent(3, $$v)
           },
-          expression: "changePassForm.reNewPassword",
+          expression: "changePassForm.renewpassword",
         },
       }),
       _c(
@@ -5604,6 +5604,8 @@ var render = function () {
               staticClass: _vm._$g(5, "sc"),
               class: _vm._$g(5, "c"),
               attrs: {
+                "hover-class": "bg-main-disabled",
+                loading: _vm._$g(5, "a-loading"),
                 disabled: _vm._$g(5, "a-disabled"),
                 type: "primary",
                 _i: 5,

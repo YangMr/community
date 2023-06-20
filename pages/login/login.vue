@@ -74,7 +74,7 @@
 </template>
 
 <script>
-	import {accountLogin} from "@/api/login.js"
+	import {accountLogin, sendCode, phoneLogin} from "@/api/login.js"
 	export default {
 		data() {
 			return {
@@ -88,7 +88,7 @@
 				},
 				// 手机号/验证码登录的表单
 				phoneForm: {
-					phone: '',
+					phone: '17802901987',
 					code: ''
 				},
 				codeTime: 0,
@@ -122,7 +122,7 @@
 			initForm() {
 				this.accountForm.username = ""
 				this.accountForm.password = ""
-				this.phoneForm.phone = ""
+				this.phoneForm.phone = "17802901987"
 				this.phoneForm.code = ""
 			},
 			// 登录提交
@@ -152,11 +152,29 @@
 					}
 					
 				} else {
-					console.log("phoneForm", this.phoneForm)
 					
 					if(!this.validate()) return
 					
-					// 调用验证码登录接口
+					// 调用手机号登录接口
+					try{
+						const result = await phoneLogin(this.phoneForm)
+						console.log("phone login=>", result)
+						this.$store.commit("saveUserInfo", result)
+						
+						uni.navigateBack({
+							delta: 1
+						})
+						
+						uni.showToast({
+							title : '登录成功',
+							icon : 'none'
+						})
+					}catch(e){
+						//TODO handle the exception
+					}finally{
+						this.loading = false
+					}
+					
 				}
 			},
 			// 手机号验证
@@ -176,7 +194,7 @@
 				return false
 			},
 			// 获取验证码
-			handleGetCode() {
+			async handleGetCode() {
 				// 判断手机号不能为空
 				if (this.phoneForm.phone === "") {
 					uni.showToast({
@@ -188,24 +206,37 @@
 
 				// 判断手机号是否符合
 				if (!this.validate()) return
-
-				// 如果定时器已经开启了,则不能在开启定时器
-
+				
 				if (this.codeTime > 0) {
 					return
 				}
-
-				// 进行倒计时
-
-				this.codeTime = 60
-				this.timer = setInterval(() => {
-					if (this.codeTime >= 1) {
-						this.codeTime--
-					} else {
-						this.codeTime = 0
-						clearInterval(this.timer)
-					}
-				}, 1000)
+				
+				try{
+					const data = {phone : this.phoneForm.phone}
+					const result = await sendCode(data)
+					console.log("result=>", result)
+					
+					uni.showToast({
+						title : result.msg,
+						icon : 'none'
+					})
+					
+					// 进行倒计时
+					
+					this.codeTime = 60
+					this.timer = setInterval(() => {
+						if (this.codeTime >= 1) {
+							this.codeTime--
+						} else {
+							this.codeTime = 0
+							clearInterval(this.timer)
+						}
+					}, 1000)
+				}catch(e){
+					//TODO handle the exception
+				}finally{
+					this.loading = false
+				}
 
 
 			}

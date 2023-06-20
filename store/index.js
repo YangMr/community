@@ -22,15 +22,15 @@ const store = new Vuex.Store({
 		// 退出登录
 		userLogout(state){
 			state.loginStatus = false
-			state.user = ""
+			state.user = ''
 			uni.removeStorageSync("user")
 		},
 		// 初始化vuex数据
 		initUser(state){
-			const user = JSON.parse(uni.getStorageSync("user")) || ''
+			const user = uni.getStorageSync("user")
 			if(user){
 				state.loginStatus = true
-				state.user = user
+				state.user = JSON.parse(user)
 			}
 		}
 	},

@@ -32,7 +32,6 @@
 				uni.getProvider({
 					service: "oauth",
 					success : (res)=>{
-						console.log("Res=>", res)
 						this.authList = res.provider.map(value=>{
 							let providerName = "" // 登录名称
 							let icon  = "" // 图标名称

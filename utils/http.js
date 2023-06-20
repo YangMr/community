@@ -5,22 +5,33 @@ const service = {
 		method : 'GET',
 		header: {
 			"content-type":"application/json",
-			token : store.state.user.token || ""
+			// token : store.state.user.token || ""
 		},
 		data : {}
 	},
 	
 	async request(options = {}){
 		try{
+			
 			options.url = config.webUrl + options.url
+			
+			const token = store.state.user.token
+			if(token){
+				this.common.header.token = token
+			}
 			
 			options.method = options.method || this.common.method
 			options.header = options.header || this.common.header
 			options.data = options.data || this.common.data
 			const res = await uni.request(options)	
-			console.log("aaaaa=>", res)
+			console.log("aaaa=>", res)
 			if(res.statusCode === 200){
-				return res.data.data
+				if(res.data.data && res.data.msg){
+					return res.data.data
+				}
+				if(res.data.msg){
+					return res.data
+				}
 			}
 			
 			if(res.statusCode !== 200){
