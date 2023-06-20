@@ -49,7 +49,8 @@
 					{
 						title: '关于社区',
 						arrow: true,
-						type: 'arrow'
+						type: 'arrow',
+						url: '/pages/about/about'
 					}
 				]
 			}

@@ -30,6 +30,11 @@ export const changePass = (data) => {
 	return service.post('/repassword',data)
 }
 
+// 修改邮箱
+export const changeEmail = (data) => {
+	return service.post('/user/bindemail',data)
+}
+
 // 退出登录
 export const logout = () => {
 	return service.post('/user/logout')

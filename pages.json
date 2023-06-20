@@ -201,6 +201,14 @@
             }
             
         }
+        ,{
+            "path" : "pages/about/about",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "关于社区"
+            }
+            
+        }
     ],
 	// 用于设置应用的状态栏、导航条、标题、窗口背景色等。
 	"globalStyle": {
