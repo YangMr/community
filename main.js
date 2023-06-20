@@ -5,13 +5,17 @@ import Vue from 'vue'
 import './uni.promisify.adaptor'
 Vue.config.productionTip = false
 
+// 引入vuex
+import store from "./store"
+
 // 全局挂载工具库
 import $U from "./utils/utils.js"
 Vue.prototype.$U = $U
 
 App.mpType = 'app'
 const app = new Vue({
-  ...App
+  ...App,
+  store
 })
 app.$mount()
 // #endif

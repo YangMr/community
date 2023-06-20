@@ -1,9 +1,11 @@
 import config from "@/config/index.js"
+import store from "@/store/index.js"
 const service = {
 	common : {
 		method : 'GET',
 		header: {
-			"content-type":"application/json"
+			"content-type":"application/json",
+			token : store.state.user.token || ""
 		},
 		data : {}
 	},
@@ -16,7 +18,19 @@ const service = {
 			options.header = options.header || this.common.header
 			options.data = options.data || this.common.data
 			const res = await uni.request(options)	
-			return res.data.data
+			console.log("aaaaa=>", res)
+			if(res.statusCode === 200){
+				return res.data.data
+			}
+			
+			if(res.statusCode !== 200){
+				uni.showToast({
+					title : res.data.msg || "未知错误",
+					icon : 'none'
+				})
+				return res.data.data
+			}
+			
 		}catch(e){
 			//TODO handle the exception
 			console.log('e=>', e)

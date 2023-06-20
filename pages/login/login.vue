@@ -45,7 +45,7 @@
 		</view>
 
 		<view class="px-2 py-3">
-			<button :class="disabled ? 'bg-main-disabled' : 'bg-main'" :disabled="disabled"
+			<button :loading="loading" hover-class="bg-main-disabled" :class="disabled ? 'bg-main-disabled' : 'bg-main'" :disabled="disabled"
 				class="bg-main text-white rounded-circle" @click="handleSubmit">登录</button>
 		</view>
 
@@ -74,15 +74,17 @@
 </template>
 
 <script>
+	import {accountLogin} from "@/api/login.js"
 	export default {
 		data() {
 			return {
+				loading : false,
 				// status 未false则表示我们在账号密码登录界面
 				status: false,
 				// 账号密码登录的表单
 				accountForm: {
-					username: '',
-					password: ''
+					username: 'zcs',
+					password: '123456'
 				},
 				// 手机号/验证码登录的表单
 				phoneForm: {
@@ -124,10 +126,31 @@
 				this.phoneForm.code = ""
 			},
 			// 登录提交
-			handleSubmit() {
+			async handleSubmit() {
+				this.loading = true
 				if (!this.status) {
-					console.log("accountForm", this.accountForm)
 					// 调用账号密码登录接口
+					try{
+						const result = await accountLogin(this.accountForm)
+						if(result){
+							this.$store.commit("saveUserInfo", result)
+							
+							uni.navigateBack({
+								delta: 1
+							})
+							
+							uni.showToast({
+								title : '登录成功',
+								icon : 'none'
+							})
+						}
+					}catch(e){
+						//TODO handle the exception
+						console.log("eeee=>",e)
+					}finally{
+						this.loading = false
+					}
+					
 				} else {
 					console.log("phoneForm", this.phoneForm)
 					

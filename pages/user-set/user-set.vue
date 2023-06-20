@@ -8,15 +8,17 @@
 		</uni-list>
 
 		<view class="py-2 px-3">
-			<button class="bg-main w-100 text-white rounded-circle">退出登录</button>
+			<button :loading="loading" class="bg-main w-100 text-white rounded-circle" @click="handleLogout">退出登录</button>
 		</view>
 	</view>
 </template>
 
 <script>
+	import {logout} from "@/api/login.js"
 	export default {
 		data() {
 			return {
+				loading : false,
 				list: [{
 						title: '账号与安全',
 						arrow: true,
@@ -60,6 +62,27 @@
 					url: item.url
 				})
 
+			},
+			// 退出登录
+			async handleLogout(){
+				this.loading = true
+				try{
+					const user111 = JSON.parse(uni.getStorageSync("user")) || ""
+					console.log("user11==>", user111)
+					const result = await logout()
+					console.log("result==>", result)
+					if(result){
+						this.$store.commit("userLogout")
+						
+						uni.switchTab({
+							url : '/pages/my/my'
+						})
+					}
+				}catch(e){
+					//TODO handle the exception
+				}finally{
+					this.loading = false	
+				}
 			}
 		}
 	}
