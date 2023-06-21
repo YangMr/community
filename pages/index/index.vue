@@ -43,67 +43,6 @@
 </template>
 
 <script>
-	const demo = [{
-			username: "昵称",
-			userpic: "/static/default.jpg",
-			newstime: "2019-10-20 下午04:30",
-			isFollow: false,
-			title: "我是标题",
-			titlepic: "/static/demo/datapic/11.jpg",
-			support: {
-				type: "support", // 顶
-				support_count: 1,
-				unsupport_count: 2
-			},
-			comment_count: 2,
-			share_num: 2
-		},
-		{
-			username: "昵称",
-			userpic: "/static/default.jpg",
-			newstime: "2019-10-20 下午04:30",
-			isFollow: false,
-			title: "我是标题",
-			titlepic: "/static/demo/datapic/11.jpg",
-			support: {
-				type: "support", // 顶
-				support_count: 1,
-				unsupport_count: 2
-			},
-			comment_count: 2,
-			share_num: 2
-		},
-		{
-			username: "昵称",
-			userpic: "/static/default.jpg",
-			newstime: "2019-10-20 下午04:30",
-			isFollow: false,
-			title: "我是标题",
-			titlepic: "/static/demo/datapic/11.jpg",
-			support: {
-				type: "support", // 顶
-				support_count: 1,
-				unsupport_count: 2
-			},
-			comment_count: 2,
-			share_num: 2
-		},
-		{
-			username: "昵称",
-			userpic: "/static/default.jpg",
-			newstime: "2019-10-20 下午04:30",
-			isFollow: false,
-			title: "我是标题",
-			titlepic: "",
-			support: {
-				type: "unsupport", // 踩
-				support_count: 1,
-				unsupport_count: 2
-			},
-			comment_count: 2,
-			share_num: 2
-		},
-	]
 	import {
 		getPostClass,
 		findPostClass
@@ -229,6 +168,7 @@
 			handleChangeSwiper(e) {
 				this.handleChangeTab(e.detail.current)
 			},
+			
 			// 关注操作
 			handleIsFollow(index) {
 				const list = this.newsList[this.activeTab].list
